@@ -1,0 +1,1 @@
+php md2resume pdf C:\resume\resume.md C:\resume\
