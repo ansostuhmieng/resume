@@ -1,1 +1,1 @@
-php md2resume html C:\resume\resume\resume.md C:\resume\resume\
+php md2resume html %CD%\resume.md %CD%
