@@ -1,5 +1,5 @@
 #Andrew Rodman
-##System Architect, Project Manager
+##Lead Developer, System Architect
 
 > [arodman@gmail.com](arodman@gmail.com)  
 > 206.355.7484
@@ -14,14 +14,14 @@ I am a vision led project manager who excels at taking customer requirements and
 
 ### Skills {#skills}
 
-* Web Development
-  : Solid understanding of hurdles at each level in software-as-a-service development, from Database to Front-End.
+* Project<br/>Oversight
+  : Years of experience working with small teams to successfully accomplish big tasks.
 
-* Requirement Gathering
-  : Proven history of taking Customer requirements from concept to delivery.
+* Web<br/>Development
+  : Solid understanding of hurdles and solutions at each level in software-as-a-service development, from database to front-end.
 
-* Project Direction
-  : History of taking small teams and getting things done.
+* Requirement<br/>Gathering
+  : Proven history of working with multiple stake holders to define system requirements, supervise development, and deliver products.
 
 -----
 
@@ -46,20 +46,6 @@ VendNovation
   __2005-Present__
   Joined the company in its infancy and grew with it, overseeing front-end interface design, database design, project definition, system architecture, system migrations, PCI certification, and much more.  
 
-  Developed scalable automated delivery systems for custom reports and real-time alerts (C#, Windows Services)
-
-  Built custom, touch based mobile inventory management interfaces including swipe-adjustable inventory counts (C#, HTML, JavaScript, JQuery)
-
-  Implemented SQL to C# object generator that provided data validation and crud actions based on SQL schemas (SQL Server, C#)
-
-  Developed custom JQuery and JavaScript UI framework for supporting in house script services (HTML, JavaScript, JQuery, C#)  
-
-  Responsible for look and feel as well as usability of several customer facing web interfaces (HTML, CSS)
-
-  Oversaw migration from bare-metal to cloud based hosting on AWS
-
-  Designed and implemented multiple specialized third-party integrations, working with remote teams to define system operations and implementation (C#, SOAP, REST, Java, Ruby)
-
 Seattle Pacific University
 : *Information Technology Services*
   __2001-2005__
@@ -70,9 +56,48 @@ Logos Research Systems
   __1998-2001__
   Responsible for maintaining on-site archives.  Scanned and converted documents to custom text formats using custom perl scripts.  Proofread documents to ensure conversion accuracy.
 
+-----
+
+### Projects {#projects}
+
+Windows Services
+: &nbsp;
+  __C#, Windows Services__
+  Develope and maintain scalable automated delivery systems for reporting, real-time alert routing, and system health monitoring.
+
+Mobile Interfaces
+: &nbsp;
+  __C#, HTML, JavaScript, JQuery__
+  Built custom, touch based mobile inventory management interfaces including unique controls for value adjustments to maximize customer productivity.
+
+Database Design
+: &nbsp;
+  __SQL Server, C#__
+  Co-designed database structures for multiple real-time transaction based machine-to-machine inventory tracking and access control systems. Implemented SQL to C# object generator that provided data validation and CRUD actions based on SQL schemas
+
+User Interface Design
+: &nbsp;
+  __HTML, CSS, Javascript, C#__
+  Responsible for look and feel as well as usability of several customer facing as well as internal platforms.  Co-developed custom controls for quickly selecting hierarchical data sets. Developed custom JavaScript UI framework for supporting in house script service frontends.
+
+Migration to Cloud Services
+: &nbsp;
+  __AWS, Microsoft Server, MS Sql Server, Google Business Email__
+  Oversaw migration from bare-metal to cloud based hosting on AWS including SQL Server data migration and deployment of IIS hosted websites.  Assisted in migration from on-site email hosting using MS Exchange to Google Business Email.  
+
+System Integrations
+: &nbsp;
+  __C#, SOAP, REST, Ruby__
+  Designed and implemented multiple specialized third-party integrations, working with remote teams to define system operations and test implementations.
+
+Office Systems Support
+: &nbsp;
+  __Microsoft Server, Cisco Device__
+  Maintain office network security by configuring Cisco Firewall rules, maintaining domain configurations, managing user accounts and security settings, etc.
+
 ------
 
-### Formal Education {#education}
+### Education {#education}
 
 Seattle Pacific University
   : *BS Computer Science*
