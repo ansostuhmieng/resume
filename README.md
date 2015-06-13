@@ -8,7 +8,7 @@
 
 ### Who Am I? {#profile}
 
-I am a vision led project manager who excels at taking customer requirements and turning them into easy to use deliverables.  I have experience in the full stack of windows based software-as-a-service world, including but not limited to: database management and design, web-service design, user-interface design, system deployment, IIS configuration and management, domain configuration, email systems, automated reporting systems, security reviews, system documentation, and more.  My passion is to deliver front-end experiences that exceed customer and industry expectations.
+I am a lead developer who excels at taking customer requirements and turning them into easy to use deliverables.  I have experience in the full stack of windows based software-as-a-service world, including but not limited to: database management and design, web-service design, user-interface design, system deployment, IIS configuration and management, domain configuration, email systems, automated reporting systems, security reviews, system documentation, and more.  My passion is to deliver front-end experiences that exceed customer and industry expectations.
 
 ------
 
