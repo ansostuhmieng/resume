@@ -110,6 +110,15 @@ page_width = 8.5 * points_per_inch
    font_size detail_heading_size
    text "skills"
 
+   transparent(0.05) do
+
+     move_up 36
+     image "png/computer screen14.png", :width => 144, :height => 144, :position => -100
+
+   end
+
+   move_cursor_to save_cursor
+
    File.open("skills.md") do |infile|
     while(line = infile.gets)
       line = line.strip!.scan(/[[:print:]]/).join
@@ -159,8 +168,8 @@ page_width = 8.5 * points_per_inch
         font_size detail_subheading_size
         fill_color "000000"
         line.sub!('1. ','')
-        text_box line, :at => [110 * position,cursor], :width => 100
-        local_height = height_of(line, {:at=>[110 * position, cursor]})
+        text_box line, :at => [120 * position,cursor], :width => 110
+        local_height = height_of(line, {:at=>[120 * position, cursor]})
 
         position += 1
         last_height = [last_height, local_height].max
@@ -192,6 +201,15 @@ page_width = 8.5 * points_per_inch
    save_cursor = cursor
    font_size detail_heading_size
    text "experience"
+
+   transparent(0.05) do
+
+     move_up 36
+     image "png/worker39.png", :width => 144, :height => 144, :position => -100
+
+   end
+
+   move_cursor_to save_cursor
 
    year_cursor = save_cursor
 
@@ -252,6 +270,17 @@ page_width = 8.5 * points_per_inch
   font_size detail_heading_size
   text "projects"
 
+
+   transparent(0.05) do
+
+     move_up 36
+     image "png/cogwheels12.png", :width => 144, :height => 144, :position => -100
+
+   end
+
+   move_cursor_to save_cursor
+
+
   year_cursor = save_cursor
 
   File.open("projects.md") do |infile|
@@ -305,6 +334,15 @@ page_width = 8.5 * points_per_inch
  save_cursor = cursor
  font_size detail_heading_size
  text "education"
+
+ transparent(0.05) do
+
+   move_up 36
+   image "png/Graduate_student_avatar_512.png", :width => 144, :height => 144, :position => -100
+
+ end
+
+ move_cursor_to save_cursor
 
  year_cursor = save_cursor
 
