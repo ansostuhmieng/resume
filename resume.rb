@@ -225,6 +225,121 @@ page_width = 8.5 * points_per_inch
   end
 
 
+  #change text color to black
+  start_new_page
+
+  stroke do
+    stroke_color "DDDDDD"
+    vertical_line 0 - margin, 10000, :at => 150
+  end
+
+  fill_color "888888"
+
+  save_cursor = cursor
+  font_size heading_size / 2.5
+  text "projects"
+
+  year_cursor = save_cursor
+
+  File.open("projects.md") do |infile|
+   while(line = infile.gets)
+     line = line.strip!.scan(/[[:print:]]/).join
+     line.gsub!(/\s+/,' ')
+
+     #skip blank lines
+     if line.length == 0
+       save_cursor -= 15
+       next
+     end
+
+     if(line.index("*") ==0)
+      font_size heading_size / 2.5
+      fill_color "000000"
+      line.sub!('* ','')
+      text_box line, :at => [175,save_cursor]
+      year_cursor = save_cursor
+    elsif(line.index("__") == 0)
+       font_size heading_size / 3
+       fill_color "555555"
+       line.gsub!('__','')
+       text_box line,
+        :at => [175, year_cursor],
+        :align => :right
+     elsif(line.index(": ") == 0)
+       font_size heading_size / 3
+       fill_color "333333"
+       line.sub!(': ','')
+       text_box line,
+        :at => [175, save_cursor - 15]
+       save_cursor -= height_of(line)
+     else
+       font_size heading_size / 3.5
+       fill_color "888888"
+       line.sub!(': ','')
+       text_box line,
+        :at => [175, save_cursor - 15]
+       save_cursor -= height_of(line) + 20
+     end
+   end
+ end
+
+
+ fill_color "888888"
+
+ move_cursor_to save_cursor
+ move_down 20
+
+ save_cursor = cursor
+ font_size heading_size / 2.5
+ text "education"
+
+ year_cursor = save_cursor
+
+ File.open("education.md") do |infile|
+  while(line = infile.gets)
+    line = line.strip!.scan(/[[:print:]]/).join
+    line.gsub!(/\s+/,' ')
+
+    #skip blank lines
+    if line.length == 0
+      save_cursor -= 15
+      next
+    end
+
+    if(line.index("*") ==0)
+     font_size heading_size / 2.5
+     fill_color "000000"
+     line.sub!('* ','')
+     text_box line, :at => [175,save_cursor]
+     year_cursor = save_cursor
+   elsif(line.index("__") == 0)
+      font_size heading_size / 3
+      fill_color "555555"
+      line.gsub!('__','')
+      text_box line,
+       :at => [175, year_cursor],
+       :align => :right
+    elsif(line.index(": ") == 0)
+      font_size heading_size / 3
+      fill_color "333333"
+      line.sub!(': ','')
+      text_box line,
+       :at => [175, save_cursor - 15]
+      save_cursor -= height_of(line)
+    else
+      font_size heading_size / 3.5
+      fill_color "888888"
+      line.sub!(': ','')
+      text_box line,
+       :at => [175, save_cursor - 15]
+      save_cursor -= height_of(line) + 20
+    end
+  end
+end
+
+
+
+
   end
 
  end
