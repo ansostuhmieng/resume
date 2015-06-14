@@ -219,7 +219,7 @@ page_width = 8.5 * points_per_inch
         line.sub!(': ','')
         text_box line,
          :at => [175, save_cursor - 15]
-        save_cursor -= height_of(line) + 20
+         save_cursor -= height_of(line, {:at=>[175, save_cursor - 15]}) + 10
       end
     end
   end
@@ -278,7 +278,7 @@ page_width = 8.5 * points_per_inch
        line.sub!(': ','')
        text_box line,
         :at => [175, save_cursor - 15]
-       save_cursor -= height_of(line) + 20
+       save_cursor -= height_of(line, {:at=>[175, save_cursor - 15]}) + 10
      end
    end
  end
