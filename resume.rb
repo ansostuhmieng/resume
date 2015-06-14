@@ -1,12 +1,18 @@
 require 'prawn'
 
 points_per_inch= 72
-margin = 0.5 * points_per_inch
+margin = 1 * points_per_inch
 
 custom_size = [8.5 * points_per_inch, 11 * points_per_inch]
 margins = [margin,margin,margin,margin]
 
 heading_size = 35
+detail_heading_size = 12
+detail_subheading_size = 10
+detail_text_size = 8
+
+vertical_line = 75
+right_side_content_offset = 100
 
 output_file = "ruby_resume.pdf"
 
@@ -47,12 +53,12 @@ page_width = 8.5 * points_per_inch
 
    stroke do
      stroke_color "DDDDDD"
-     vertical_line 0 - margin, 10000, :at => 150
+     vertical_line 0 - margin, 10000, :at => vertical_line
    end
 
    #draw background
    fill_gradient top_left, [150, 200], 'FF4500', 'CC0000'
-   fill_rectangle top_left, page_width, 280
+   fill_rectangle top_left, page_width, 350
 
    #reset text color to white
    fill_color "FFFFFF"
@@ -90,10 +96,10 @@ page_width = 8.5 * points_per_inch
    #font "Helvetica"
 
    transparent(0.8) do
-     font_size heading_size / 3
+     font_size heading_size /3
      fill_color "FFFFFF"
      move_down 20
-     text "I am a vision led project manager who excels at taking customer requirements and turning them into easy to use deliverables.  I have experience in the full stack of windows based software-as-a-service world, including but not limited to: database management and design, web-service design, user-interface design, system deployment, IIS configuration and management, domain configuration, email systems, automated reporting systems, security reviews, system documentation, and more.  My passion is to deliver front-end experiences that exceed customer and industry expectations.", :leading => 5
+     text "I am a vision led project manager who excels at taking customer requirements and turning them into easy to use deliverables.  I have experience in the full stack of windows based software-as-a-service world, including but not limited to: database management and design, web-service design, user-interface design, system deployment, IIS configuration and management, domain configuration, email systems, automated reporting systems, security reviews, system documentation, and more.  My passion is to deliver front-end experiences that exceed customer and industry expectations.", :leading => 2
    end
 
    move_down 70
@@ -101,7 +107,7 @@ page_width = 8.5 * points_per_inch
    fill_color "888888"
 
    save_cursor = cursor
-   font_size heading_size / 2.5
+   font_size detail_heading_size
    text "skills"
 
    File.open("skills.md") do |infile|
@@ -115,27 +121,30 @@ page_width = 8.5 * points_per_inch
       end
 
       if(line.index("*") ==0)
-       font_size heading_size / 2.5
+       font_size detail_heading_size
        fill_color "000000"
        line.sub!('* ','')
-       text_box line, :at => [175,save_cursor]
+       text_box line, :at => [right_side_content_offset,save_cursor]
       else
-        font_size heading_size / 3
+        font_size detail_subheading_size
         fill_color "888888"
         line.sub!(': ','')
         text_box line,
-         :at => [175, save_cursor - 15]
+         :at => [right_side_content_offset, save_cursor - 15]
         save_cursor -= 50
       end
     end
 
     move_cursor_to save_cursor - 10
-    font_size heading_size / 2.5
+    font_size detail_heading_size
     text "techinical"
     move_up height_of("technical")
 
+    save_cursor = cursor
+    last_height = 0
+
     position = 0
-    bounding_box([175, cursor], :width => 300) do
+    bounding_box([right_side_content_offset, cursor], :width => 400) do
 
       File.open("technical.md") do |infile|
        while(line = infile.gets)
@@ -147,24 +156,28 @@ page_width = 8.5 * points_per_inch
           next
         end
 
-        font_size heading_size / 3
+        font_size detail_subheading_size
         fill_color "000000"
         line.sub!('1. ','')
         text_box line, :at => [110 * position,cursor], :width => 100
+        local_height = height_of(line, {:at=>[110 * position, cursor]})
 
         position += 1
+        last_height = [last_height, local_height].max
+
         if(position >= 3)
 
           position = 0
-          move_down height_of(line)
+          move_down last_height
 
           stroke do
             stroke_color "DDDDDD"
-            horizontal_line 0, 400, :at => 0
+            horizontal_line 0, 600, :at => 0
           end
 
           move_down 5
 
+          last_height = 0
         end
 
        end
@@ -177,7 +190,7 @@ page_width = 8.5 * points_per_inch
 
    move_down 20
    save_cursor = cursor
-   font_size heading_size / 2.5
+   font_size detail_heading_size
    text "experience"
 
    year_cursor = save_cursor
@@ -194,32 +207,32 @@ page_width = 8.5 * points_per_inch
       end
 
       if(line.index("*") ==0)
-       font_size heading_size / 2.5
+       font_size detail_heading_size
        fill_color "000000"
        line.sub!('* ','')
-       text_box line, :at => [175,save_cursor]
+       text_box line, :at => [right_side_content_offset,save_cursor]
        year_cursor = save_cursor
      elsif(line.index("__") == 0)
-        font_size heading_size / 3
+        font_size detail_subheading_size
         fill_color "555555"
         line.gsub!('__','')
         text_box line,
-         :at => [175, year_cursor],
+         :at => [right_side_content_offset, year_cursor],
          :align => :right
       elsif(line.index(": ") == 0)
-        font_size heading_size / 3
+        font_size detail_subheading_size
         fill_color "333333"
         line.sub!(': ','')
         text_box line,
-         :at => [175, save_cursor - 15]
-        save_cursor -= height_of(line)
+         :at => [right_side_content_offset, save_cursor - 15]
+        save_cursor -= height_of(line, {:at=>[right_side_content_offset, save_cursor - 15]})
       else
-        font_size heading_size / 3.5
+        font_size detail_text_size
         fill_color "888888"
         line.sub!(': ','')
         text_box line,
-         :at => [175, save_cursor - 15]
-         save_cursor -= height_of(line, {:at=>[175, save_cursor - 15]}) + 10
+         :at => [right_side_content_offset, save_cursor - 15]
+         save_cursor -= height_of(line, {:at=>[right_side_content_offset, save_cursor - 15]}) + 10
       end
     end
   end
@@ -230,13 +243,13 @@ page_width = 8.5 * points_per_inch
 
   stroke do
     stroke_color "DDDDDD"
-    vertical_line 0 - margin, 10000, :at => 150
+    vertical_line 0 - margin, 10000, :at => vertical_line
   end
 
   fill_color "888888"
 
   save_cursor = cursor
-  font_size heading_size / 2.5
+  font_size detail_heading_size
   text "projects"
 
   year_cursor = save_cursor
@@ -253,32 +266,32 @@ page_width = 8.5 * points_per_inch
      end
 
      if(line.index("*") ==0)
-      font_size heading_size / 2.5
+      font_size detail_heading_size
       fill_color "000000"
       line.sub!('* ','')
-      text_box line, :at => [175,save_cursor]
+      text_box line, :at => [right_side_content_offset,save_cursor]
       year_cursor = save_cursor
     elsif(line.index("__") == 0)
-       font_size heading_size / 3
+       font_size detail_subheading_size
        fill_color "555555"
        line.gsub!('__','')
        text_box line,
-        :at => [175, year_cursor],
+        :at => [right_side_content_offset, year_cursor],
         :align => :right
      elsif(line.index(": ") == 0)
-       font_size heading_size / 3
+       font_size detail_subheading_size
        fill_color "333333"
        line.sub!(': ','')
        text_box line,
-        :at => [175, save_cursor - 15]
-       save_cursor -= height_of(line)
+        :at => [right_side_content_offset, save_cursor - 15]
+       save_cursor -= height_of(line, {:at=>[right_side_content_offset, save_cursor - 15]})
      else
-       font_size heading_size / 3.5
+       font_size detail_text_size
        fill_color "888888"
        line.sub!(': ','')
        text_box line,
-        :at => [175, save_cursor - 15]
-       save_cursor -= height_of(line, {:at=>[175, save_cursor - 15]}) + 10
+        :at => [right_side_content_offset, save_cursor - 15]
+       save_cursor -= height_of(line, {:at=>[right_side_content_offset, save_cursor - 15]}) + 10
      end
    end
  end
@@ -290,7 +303,7 @@ page_width = 8.5 * points_per_inch
  move_down 20
 
  save_cursor = cursor
- font_size heading_size / 2.5
+ font_size detail_heading_size
  text "education"
 
  year_cursor = save_cursor
@@ -307,31 +320,31 @@ page_width = 8.5 * points_per_inch
     end
 
     if(line.index("*") ==0)
-     font_size heading_size / 2.5
+     font_size detail_heading_size
      fill_color "000000"
      line.sub!('* ','')
-     text_box line, :at => [175,save_cursor]
+     text_box line, :at => [right_side_content_offset,save_cursor]
      year_cursor = save_cursor
    elsif(line.index("__") == 0)
-      font_size heading_size / 3
+      font_size detail_subheading_size
       fill_color "555555"
       line.gsub!('__','')
       text_box line,
-       :at => [175, year_cursor],
+       :at => [right_side_content_offset, year_cursor],
        :align => :right
     elsif(line.index(": ") == 0)
-      font_size heading_size / 3
+      font_size detail_subheading_size
       fill_color "333333"
       line.sub!(': ','')
       text_box line,
-       :at => [175, save_cursor - 15]
+       :at => [right_side_content_offset, save_cursor - 15]
       save_cursor -= height_of(line)
     else
-      font_size heading_size / 3.5
+      font_size detail_text_size
       fill_color "888888"
       line.sub!(': ','')
       text_box line,
-       :at => [175, save_cursor - 15]
+       :at => [right_side_content_offset, save_cursor - 15]
       save_cursor -= height_of(line) + 20
     end
   end
